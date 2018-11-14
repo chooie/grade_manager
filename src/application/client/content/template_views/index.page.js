@@ -15,7 +15,7 @@ exports.page = function(options) {
         "script",
         preformatted`
           const client = require("./main.js");
-          console.log(client.isTrue());
+          client.setup();
         `
       ]
     ]
