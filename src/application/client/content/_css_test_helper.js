@@ -2,16 +2,16 @@ const quixote = require("./vendor/quixote-0.14.0.js");
 const assert = require("_assert");
 
 exports.White = "rgb(255, 255, 255)";
-exports.OffWhite = "rgb(43, 43, 43)";
-exports.OffBlack = "rgb(253, 253, 253)";
+exports.OffBlack = "rgb(43, 43, 43)";
+exports.OffWhite = "rgb(253, 253, 253)";
 exports.Gold = "rgb(205, 173, 0)";
 exports.LightGrey = "rgb(167, 167, 167)";
 
-exports.backgroundColor = exports.White;
+exports.backgroundColor = exports.OffBlack;
 exports.contactMailColor = exports.Gold;
 exports.catchyTextColor = exports.LightGrey;
-exports.headerTextColor = exports.OffBlack;
-exports.pageBackgroundColor = exports.OffWhite;
+exports.headerTextColor = exports.OffWhite;
+exports.pageBackgroundColor = exports.OffBlack;
 
 exports.IOS_BROWSER_WIDTH = 980;
 exports.IPAD_LANDSCAPE_HEIGHT_WITH_BROWSER_TABS = 641;

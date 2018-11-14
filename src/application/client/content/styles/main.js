@@ -8,10 +8,15 @@ function styles() {
       "box-sizing": "border-box"
     },
 
+    html: {
+      "font-size": "18px",
+      "font-family": "sans-serif"
+    },
+
     body: {
       overflow: "auto",
       margin: 0,
-      background: "rgb(255, 255, 255)"
+      background: "#2b2b2b"
     },
 
     // Prevent margin collapsing whereby child element margins are applied to
@@ -33,13 +38,13 @@ function styles() {
       background: "#2b2b2b"
     },
 
-    ".body": {
+    ".main-content-container": {
       "padding-bottom": "60px"
     },
 
     ".header": {
       display: "inline-block",
-      "font-size": "10vw",
+      "font-size": "2rem",
       "text-align": "center",
       color: "#fdfdfd"
     },
@@ -59,6 +64,10 @@ function styles() {
     ".contact-link": {
       "font-size": "4vw",
       color: "#cdad00"
+    },
+
+    ".text": {
+      color: "#fdfdfd"
     },
 
     ".footer": {

@@ -78,8 +78,8 @@ describe("Smoke test", function() {
     const elements = await driver.findElements(By.id("header"));
     const element = elements[0];
     const text = await element.getText();
-    assert.equal(text, "Automatopia NodeJS");
-    assert.equal(await driver.getTitle(), "Home - Automatopia NodeJS");
+    assert.equal(text, "Grade Manager");
+    assert.equal(await driver.getTitle(), "Home - Grade Manager");
   });
 
   it("can get 404 page when using an unknown route", async function() {

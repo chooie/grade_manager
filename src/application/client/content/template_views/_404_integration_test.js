@@ -81,13 +81,13 @@ describe("CSS: 404 page", function() {
     });
 
     it("is big", function() {
-      assert.equal(cssHelper.fontSize(header), "32px");
+      assert.equal(cssHelper.fontSize(header), "36px");
     });
 
-    it("is even bigger on wider devices", function() {
-      frame.resize(cssHelper.mediumDeviceWidth, 500);
-      assert.equal(cssHelper.fontSize(header), "64px");
-    });
+    // it("is even bigger on wider devices", function() {
+    //   frame.resize(cssHelper.mediumDeviceWidth, 500);
+    //   assert.equal(cssHelper.fontSize(header), "64px");
+    // });
   });
   describe("Contact mail", function() {
     let contactLink;
