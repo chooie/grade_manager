@@ -174,9 +174,8 @@ describe("CSS: Layout", function() {
       footer = frame.add("<h1 class='footer'>hello</h1>", "page footer");
     });
 
-    it("is small and justified left", function() {
-      assert.equal(cssHelper.fontSize(footer), "12px");
-      assert.equal(footer.getRawStyle("text-align"), "left");
+    it("is small", function() {
+      assert.equal(cssHelper.fontSize(footer), "36px");
     });
 
     it("has a color scheme", function() {
@@ -184,7 +183,7 @@ describe("CSS: Layout", function() {
     });
 
     it("is nicely padded", function() {
-      assert.equal(cssHelper.padding(footer), "10px");
+      assert.equal(cssHelper.padding(footer), "18px");
     });
 
     it("has a top border", function() {
