@@ -7,6 +7,7 @@ module.exports = class StudentAdder extends React.Component {
     super(props);
     this.state = { value: "", correct: true };
 
+    this.addStudent = props.addStudent;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,7 +28,7 @@ module.exports = class StudentAdder extends React.Component {
     event.preventDefault();
 
     if (canSubmit(this.state)) {
-      alert(`A name was submitted: ${this.state.value}`);
+      this.addStudent({ name: this.state.value });
     }
   }
 

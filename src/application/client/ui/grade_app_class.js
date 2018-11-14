@@ -6,20 +6,25 @@ const e = React.createElement;
 module.exports = class GradeApp extends React.Component {
   constructor(props) {
     super(props);
-    this.students = [];
+    this.state = { students: [] };
+  }
+
+  addStudent(student) {
+    this.setState({ students: [...this.state.students, student] });
   }
 
   render() {
     return e(
       "div",
       null,
-      e(StudentAdder),
-      e(Students.bind(null, this.students))
+      e(StudentAdder.bind(this, { addStudent: this.addStudent.bind(this) })),
+      e(Students.bind(null, this.state))
     );
   }
 };
 
-function Students(students) {
+function Students(state) {
+  const students = state.students;
   const title = e("h1", { className: "header" }, "Students");
   let content;
   if (students.length < 1) {
@@ -29,7 +34,13 @@ function Students(students) {
       "No students &mdash; Add one!"
     );
   } else {
-    content = e("p", { className: "text" }, "Students go here...");
+    content = e(
+      "ul",
+      null,
+      ...students.map(function(student) {
+        return e("li", { className: "text" }, student.name);
+      })
+    );
   }
   return e("div", null, title, content);
 }
