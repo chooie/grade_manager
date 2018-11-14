@@ -85,12 +85,12 @@ function styles() {
 
     ".student-form__text-input": {
       width: "100%",
-      height: "3.5rem",
+      height: "3.0rem",
       border: "0.2rem solid #cdad00",
       "border-radius": "0.5rem",
       "padding-left": "1rem",
       "padding-right": "1rem",
-      "font-size": "2rem",
+      "font-size": "1.5rem",
       "margin-top": "1rem",
       "margin-bottom": "1rem"
     },
@@ -114,7 +114,7 @@ function styles() {
     },
 
     ".button[disabled]": {
-      opactiy: 0.1
+      opacity: 0.1
     },
 
     ".button:active": {
