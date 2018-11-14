@@ -3,30 +3,42 @@ const ReactDOM = require("./react-dom.js");
 
 const e = React.createElement;
 
-class LikeButton extends React.Component {
+class GradeApp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { liked: false };
+    this.students = [];
   }
 
   render() {
-    if (this.state.liked) {
-      return e("p", null, "You liked this.");
-    }
-
     return e(
-      "button",
-      { onClick: () => this.setState({ liked: true }) },
-      "Like"
+      "div",
+      null,
+      e("h1", { className: "header" }, "Students"),
+      e(Students.bind(null, this.students))
     );
   }
 }
 
-exports.setup = function setup() {
-  ReactDOM.render(
-    React.createElement(LikeButton),
-    document.querySelector("#app-container")
+function Students(students) {
+  if (students.length < 1) {
+    return dangerousElement(
+      "p",
+      { className: "text" },
+      "No students &mdash; Add one!"
+    );
+  }
+  return e("p", { className: "text" }, "Students go here...");
+}
+
+function dangerousElement(elementName, props, text) {
+  return e(
+    "p",
+    Object.assign({}, props, { dangerouslySetInnerHTML: { __html: text } })
   );
+}
+
+exports.setup = function setup() {
+  ReactDOM.render(e(GradeApp), document.querySelector("#app-container"));
 };
 
 exports.isTrue = function isTrue() {

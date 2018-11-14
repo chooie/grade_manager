@@ -9,7 +9,11 @@ exports.page = function(options) {
     ],
     bodyElements: [
       ["h1", { id: "header", class: "header" }, "Grade Manager"],
-      ["div", { id: "app-container" }, ["p", { class: "text" }, "Loading..."]],
+      [
+        "div",
+        { id: "app-container", class: "app-container" },
+        ["p", { class: "text" }, "Loading..."]
+      ],
       ["script", { src: "bundle.js" }],
       [
         "script",

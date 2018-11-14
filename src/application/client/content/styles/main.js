@@ -66,6 +66,10 @@ function styles() {
       color: "#cdad00"
     },
 
+    ".app-container": {
+      "text-align": "left"
+    },
+
     ".text": {
       color: "#fdfdfd"
     },
