@@ -18,6 +18,20 @@ module.exports = class GradeApp extends React.Component {
     this.setState({ students: [...this.state.students, student] });
   }
 
+  updateStudent(indexToUpdate, values) {
+    const studentToUpdate = this.state.students[indexToUpdate];
+    let { name, grade } = studentToUpdate;
+    if (!isUndefinedOrNull(values.name)) {
+      name = values.name;
+    }
+    if (!isUndefinedOrNull(values.grade)) {
+      grade = values.grade;
+    }
+    const newStudents = this.state.students.slice();
+    newStudents[indexToUpdate] = { name, grade };
+    this.setState(Object.assign({}, this.state, { students: newStudents }));
+  }
+
   deleteStudent(indexToDelete) {
     const newStudents = this.state.students.filter(function(student, index) {
       return index !== indexToDelete;
@@ -45,20 +59,25 @@ module.exports = class GradeApp extends React.Component {
       this.state.showStudentForm &&
         e(StudentAdder.bind(this, { addStudent: this.addStudent.bind(this) })),
       e(
-        Students.bind(null, this.state.students, this.deleteStudent.bind(this))
+        Students.bind(
+          null,
+          this.state.students,
+          this.updateStudent.bind(this),
+          this.deleteStudent.bind(this)
+        )
       ),
       e(StudentStatistics.bind(null, this.state.students))
     );
   }
 };
 
-function Students(students, deleteStudent) {
+function Students(students, updateStudent, deleteStudent) {
   const title = e("h1", { className: "header" }, "Students");
-  let content = studentInfo(students, deleteStudent);
+  let content = studentInfo(students, updateStudent, deleteStudent);
   return e("div", null, title, content);
 }
 
-function studentInfo(students, deleteStudent) {
+function studentInfo(students, updateStudent, deleteStudent) {
   if (students.length < 1) {
     return dangerousElement(
       "p",
@@ -89,8 +108,8 @@ function studentInfo(students, deleteStudent) {
           className: "student__name input",
           placeholder: "Name...",
           validator: validators.name,
-          callback: function(value) {
-            console.log("name", value);
+          callback: function(valueObj) {
+            // updateStudent(index, { name: valueObj.value});
           },
           defaultValue: student.name
         }),
@@ -98,8 +117,8 @@ function studentInfo(students, deleteStudent) {
           className: "student__grade input",
           placeholder: "Grade...",
           validator: validators.grade,
-          callback: function(value) {
-            console.log("grade", value);
+          callback: function(valueObj) {
+            // updateStudent(index, { grade: valueObj.value });
           },
           defaultValue: student.grade
         }),
@@ -125,4 +144,8 @@ function dangerousElement(elementName, props, text) {
     elementName,
     Object.assign({}, props, { dangerouslySetInnerHTML: { __html: text } })
   );
+}
+
+function isUndefinedOrNull(value) {
+  return value === undefined || value === null;
 }
