@@ -13,17 +13,24 @@ module.exports = class GradeApp extends React.Component {
     this.setState({ students: [...this.state.students, student] });
   }
 
+  deleteStudent(indexToDelete) {
+    const newStudents = this.state.students.filter(function(student, index) {
+      return index !== indexToDelete;
+    });
+    this.setState({ students: newStudents });
+  }
+
   render() {
     return e(
       "div",
       null,
       e(StudentAdder.bind(this, { addStudent: this.addStudent.bind(this) })),
-      e(Students.bind(null, this.state))
+      e(Students.bind(null, this.state, this.deleteStudent.bind(this)))
     );
   }
 };
 
-function Students(state) {
+function Students(state, deleteStudent) {
   const students = state.students;
   const title = e("h1", { className: "header" }, "Students");
   let content;
@@ -37,8 +44,13 @@ function Students(state) {
     content = e(
       "ul",
       null,
-      ...students.map(function(student) {
-        return e("li", { className: "text" }, student.name);
+      ...students.map(function(student, index) {
+        return e(
+          "li",
+          { className: "text" },
+          student.name + " - ",
+          e("span", { onClick: deleteStudent.bind(this, index) }, "x")
+        );
       })
     );
   }
