@@ -84,7 +84,9 @@ function styles() {
     },
 
     ".student-form": {
-      "text-align": "center"
+      "text-align": "center",
+      "max-width": "500px",
+      margin: "auto"
     },
 
     ".student-form__text-input": {
