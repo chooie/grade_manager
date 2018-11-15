@@ -221,6 +221,10 @@ function styles() {
       color: "rgb(205, 173, 0)"
     },
 
+    ".hidden": {
+      display: "none"
+    },
+
     ".footer": {
       // Must position absolute so always stays at the bottom even when there's
       // little content

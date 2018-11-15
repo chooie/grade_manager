@@ -5,15 +5,16 @@ const e = React.createElement;
 module.exports = class TextInput extends React.Component {
   constructor(props) {
     super(props);
-    let defaultValue = "";
-    if (props.defaultValue !== undefined && props.defaultValue !== null) {
-      defaultValue = props.defaultValue;
-    }
     this.state = {
-      value: defaultValue,
+      value: "",
       correct: false,
       dirty: false
     };
+
+    if (props.defaultState) {
+      this.state = props.defaultState;
+    }
+
     if (!props.validator) {
       throw new Error("You must pass a validator function");
     }
@@ -21,6 +22,7 @@ module.exports = class TextInput extends React.Component {
       throw new Error("You must a pass a callback function");
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleChange(event) {
@@ -36,6 +38,12 @@ module.exports = class TextInput extends React.Component {
     });
   }
 
+  handleBlur(event) {
+    if (this.props.callbackOnBlur) {
+      this.props.callbackOnBlur(this.state);
+    }
+  }
+
   render() {
     return e("input", {
       className:
@@ -43,13 +51,14 @@ module.exports = class TextInput extends React.Component {
       type: "text",
       placeholder: this.props.placeholder,
       value: this.state.value,
-      onChange: this.handleChange
+      onChange: this.handleChange,
+      onBlur: this.handleBlur
     });
   }
 };
 
 function getClassDependingOnValidity({ value, dirty, correct }) {
-  if (!dirty || value.length === 0) return "";
+  if ((!dirty && value.length === 0) || !dirty) return "";
 
   if (correct) {
     return "valid";
