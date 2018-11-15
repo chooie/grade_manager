@@ -37,19 +37,37 @@ function Students(state, deleteStudent) {
   if (students.length < 1) {
     content = dangerousElement(
       "p",
-      { className: "text" },
+      { className: "large-text text" },
       "No students &mdash; Add one!"
     );
   } else {
     content = e(
-      "ul",
-      null,
+      "div",
+      { className: "students-container" },
+      e(
+        "div",
+        { className: "student__header large-text text" },
+        e("span", { className: "student__name gold" }, "Name"),
+        e("span", { className: "student__grade gold" }, "%")
+      ),
       ...students.map(function(student, index) {
         return e(
-          "li",
-          { className: "text" },
-          student.name + " - ",
-          e("span", { onClick: deleteStudent.bind(this, index) }, "x")
+          "div",
+          { className: "student large-text text" },
+          e("span", { className: "student__name" }, student.name),
+          e("span", { className: "student__grade" }, student.grade),
+          e(
+            "span",
+            {
+              className: "student__delete",
+              onClick: deleteStudent.bind(this, index)
+            },
+            dangerousElement(
+              "div",
+              { className: "student__delete__icon" },
+              "&#x2715;"
+            )
+          )
         );
       })
     );
@@ -59,7 +77,7 @@ function Students(state, deleteStudent) {
 
 function dangerousElement(elementName, props, text) {
   return e(
-    "p",
+    elementName,
     Object.assign({}, props, { dangerouslySetInnerHTML: { __html: text } })
   );
 }

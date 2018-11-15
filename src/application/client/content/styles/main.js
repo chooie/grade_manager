@@ -36,7 +36,7 @@ function styles() {
       "margin-left": "auto",
       "margin-right": "auto",
       "min-height": "100vh",
-      padding: "1rem"
+      padding: "0.5rem"
     },
 
     ".page-container--light": {
@@ -79,6 +79,10 @@ function styles() {
       color: "#fdfdfd"
     },
 
+    ".large-text": {
+      "font-size": "1.5rem"
+    },
+
     ".student-form": {
       "text-align": "center"
     },
@@ -103,6 +107,51 @@ function styles() {
       border: "0.2rem solid red"
     },
 
+    ".student": {
+      display: "flex",
+      "justify-content": "center",
+      "justify-items": "center",
+      "padding-bottom": "1rem"
+    },
+
+    ".student__header": {
+      "padding-bottom": "1rem"
+    },
+
+    ".student__name": {
+      display: "inline-flex",
+      "align-items": "center",
+      width: "70%",
+      hyphens: "auto"
+    },
+
+    ".student__grade": {
+      display: "inline-flex",
+      "align-items": "center",
+      "justify-content": "flex-end",
+      width: "20%"
+    },
+
+    ".student__delete": {
+      display: "inline-flex",
+      "align-items": "center",
+      "justify-content": "center",
+      width: "10%",
+      "text-align": "right"
+    },
+
+    ".student__delete__icon": {
+      display: "inline-flex",
+      "align-items": "center",
+      "justify-content": "center",
+      background: "red",
+      "font-size": "0.8rem",
+      width: "1rem",
+      height: "1rem",
+      "border-radius": "2rem",
+      cursor: "pointer"
+    },
+
     ".button": {
       padding: "0.75rem",
       "border-radius": "5px",
@@ -121,6 +170,10 @@ function styles() {
       transform: "translateY(5px)",
       "box-shadow": "0 3px rgb(205, 173, 0)",
       filter: "brightness(90%)"
+    },
+
+    ".gold": {
+      color: "rgb(205, 173, 0)"
     },
 
     ".footer": {
