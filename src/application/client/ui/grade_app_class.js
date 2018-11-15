@@ -8,7 +8,8 @@ const e = React.createElement;
 module.exports = class GradeApp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { students: [] };
+    this.state = { students: [], showStudentForm: false };
+    this.toggleStudentForm = this.toggleStudentForm.bind(this);
   }
 
   addStudent(student) {
@@ -22,11 +23,25 @@ module.exports = class GradeApp extends React.Component {
     this.setState({ students: newStudents });
   }
 
+  toggleStudentForm() {
+    this.setState({ showStudentForm: !this.state.showStudentForm });
+  }
+
   render() {
     return e(
       "div",
       null,
-      e(StudentAdder.bind(this, { addStudent: this.addStudent.bind(this) })),
+      e(
+        "div",
+        { className: "center-containing-text" },
+        e(
+          "button",
+          { className: "button", onClick: this.toggleStudentForm },
+          "Toggle Student Form"
+        )
+      ),
+      this.state.showStudentForm &&
+        e(StudentAdder.bind(this, { addStudent: this.addStudent.bind(this) })),
       e(
         Students.bind(null, this.state.students, this.deleteStudent.bind(this))
       ),

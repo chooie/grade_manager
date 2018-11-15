@@ -185,6 +185,10 @@ function styles() {
       "text-align": "center"
     },
 
+    ".center-containing-text": {
+      "text-align": "center"
+    },
+
     ".button": {
       padding: "0.75rem",
       "border-radius": "5px",
