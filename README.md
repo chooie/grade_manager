@@ -1,6 +1,13 @@
 # Grade Manager
 Manage a list of students and their grades.
 
+Some things are still not finished:
+- Styles &mdash; currently, best viewed on a mobile device
+- Persistence &mdash; data is only stored in memory, therefore a page refresh
+will wipe all state
+
+- Quickstart: `./tasks.sh run` and go to "http://localhost:5000"
+
 This repo was originally cloned from the application template at
 https://github.com/chooie/automatopia-nodejs.
 
