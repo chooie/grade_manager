@@ -103,11 +103,11 @@ function styles() {
       "margin-bottom": "1rem"
     },
 
-    ".student-form__text-input.valid": {
+    ".valid": {
       border: "0.2rem solid green"
     },
 
-    ".student-form__text-input.error": {
+    ".error": {
       border: "0.2rem solid red"
     },
 
@@ -135,11 +135,19 @@ function styles() {
       hyphens: "auto"
     },
 
+    ".student__name.input": {
+      color: "black"
+    },
+
     ".student__grade": {
       display: "inline-flex",
       "align-items": "center",
       "justify-content": "flex-end",
       width: "20%"
+    },
+
+    ".student__grade.input": {
+      color: "black"
     },
 
     ".student__delete": {

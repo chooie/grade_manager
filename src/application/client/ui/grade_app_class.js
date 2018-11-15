@@ -2,6 +2,8 @@ const React = require("./react.js");
 
 const StudentAdder = require("./student_adder_class.js");
 const StudentStatistics = require("./student_statistics.js");
+const TextInput = require("./text_input_class.js");
+const validators = require("./validators.js");
 
 const e = React.createElement;
 
@@ -83,8 +85,24 @@ function studentInfo(students, deleteStudent) {
       return e(
         "div",
         { className: "student large-text text " + failClass },
-        e("div", { className: "student__name" }, student.name),
-        e("div", { className: "student__grade" }, student.grade),
+        e(TextInput, {
+          className: "student__name input",
+          placeholder: "Name...",
+          validator: validators.name,
+          callback: function(value) {
+            console.log("name", value);
+          },
+          defaultValue: student.name
+        }),
+        e(TextInput, {
+          className: "student__grade input",
+          placeholder: "Grade...",
+          validator: validators.grade,
+          callback: function(value) {
+            console.log("grade", value);
+          },
+          defaultValue: student.grade
+        }),
         e(
           "div",
           {

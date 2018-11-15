@@ -1,5 +1,8 @@
 const React = require("./react.js");
 
+const TextInput = require("./text_input_class.js");
+const validators = require("./validators.js");
+
 const e = React.createElement;
 
 module.exports = class StudentAdder extends React.Component {
@@ -34,9 +37,7 @@ module.exports = class StudentAdder extends React.Component {
       e(TextInput, {
         className: "student-form__text-input",
         placeholder: "Name...",
-        validator: function(value) {
-          return value.trim() !== "";
-        },
+        validator: validators.name,
         callback: value => {
           const newValues = Object.assign({}, this.state.values, {
             name: value
@@ -47,16 +48,7 @@ module.exports = class StudentAdder extends React.Component {
       e(TextInput, {
         className: "student-form__text-input",
         placeholder: "Grade...",
-        validator: function(value) {
-          if (isNumeric(value)) {
-            const number = parseFloat(value);
-
-            if (isValidGrade(number)) {
-              return true;
-            }
-          }
-          return false;
-        },
+        validator: validators.grade,
         callback: value => {
           const newValues = Object.assign({}, this.state.values, {
             grade: value
@@ -74,52 +66,6 @@ module.exports = class StudentAdder extends React.Component {
   }
 };
 
-class TextInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: "",
-      correct: false,
-      dirty: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    const value = event.target.value;
-    this.setState(state => {
-      const newState = {
-        value,
-        dirty: true,
-        correct: this.props.validator(value)
-      };
-      this.props.callback(newState);
-      return newState;
-    });
-  }
-
-  render() {
-    return e("input", {
-      className:
-        this.props.className + " " + getClassDependingOnValidity(this.state),
-      type: "text",
-      placeholder: this.props.placeholder,
-      value: this.state.value,
-      onChange: this.handleChange
-    });
-  }
-}
-
-function getClassDependingOnValidity({ value, dirty, correct }) {
-  if (!dirty || value.length === 0) return "";
-
-  if (correct) {
-    return "valid";
-  } else {
-    return "error";
-  }
-}
-
 function canSubmit(values) {
   const keys = Object.keys(values);
 
@@ -131,12 +77,4 @@ function canSubmit(values) {
     }
   }
   return true;
-}
-
-function isValidGrade(number) {
-  return number >= 0 && number <= 100;
-}
-
-function isNumeric(number) {
-  return !isNaN(parseFloat(number)) && isFinite(number);
 }
