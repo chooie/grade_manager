@@ -44,6 +44,8 @@ function styles() {
     },
 
     ".main-content-container": {
+      "max-width": "1000px",
+      margin: "auto",
       "padding-bottom": "60px"
     },
 
@@ -152,6 +154,28 @@ function styles() {
       height: "1rem",
       "border-radius": "2rem",
       cursor: "pointer"
+    },
+
+    ".student-statistics": {
+      "padding-bottom": "1rem"
+    },
+
+    ".student__statistics__header": {
+      display: "flex",
+      "justify-content": "center"
+    },
+
+    ".student-statistics__headers__column": {
+      display: "inline-block",
+      width: "33.333333%",
+      "text-align": "center",
+      "padding-bottom": "0.5rem"
+    },
+
+    ".student-statistics__row__column": {
+      display: "inline-block",
+      width: "33.333333%",
+      "text-align": "center"
     },
 
     ".button": {
