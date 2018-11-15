@@ -37,11 +37,11 @@ module.exports = class GradeApp extends React.Component {
 
 function Students(students, deleteStudent) {
   const title = e("h1", { className: "header" }, "Students");
-  let content = getStudentInfo(students, deleteStudent);
+  let content = studentInfo(students, deleteStudent);
   return e("div", null, title, content);
 }
 
-function getStudentInfo(students, deleteStudent) {
+function studentInfo(students, deleteStudent) {
   if (students.length < 1) {
     return dangerousElement(
       "p",
@@ -59,9 +59,15 @@ function getStudentInfo(students, deleteStudent) {
       e("div", { className: "student__grade gold" }, "%")
     ),
     ...students.map(function(student, index) {
+      const studentGrade = parseFloat(student.grade);
+      let failClass = "";
+      if (studentGrade < 65) {
+        failClass = "fail";
+      }
+
       return e(
         "div",
-        { className: "student large-text text" },
+        { className: "student large-text text " + failClass },
         e("div", { className: "student__name" }, student.name),
         e("div", { className: "student__grade" }, student.grade),
         e(

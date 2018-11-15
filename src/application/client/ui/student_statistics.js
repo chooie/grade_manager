@@ -23,8 +23,8 @@ module.exports = function StudentStatistics(students) {
 
   return e(
     "div",
-    { className: "student__statistics" },
-    e("h1", { className: "student__statistics__header text" }, "Statistics"),
+    { className: "student-statistics-container" },
+    e("h1", { className: "student-statistics__title text" }, "Statistics"),
     e(
       "div",
       { className: "student-statistics text" },

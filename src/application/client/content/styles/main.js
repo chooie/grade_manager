@@ -115,7 +115,13 @@ function styles() {
       display: "flex",
       "justify-content": "center",
       "justify-items": "center",
-      "padding-bottom": "1rem"
+      padding: "0.5rem",
+      "margin-bottom": "1rem",
+      "border-radius": "0.7rem"
+    },
+
+    ".student.fail": {
+      background: "#865050"
     },
 
     ".student__header": {
@@ -157,10 +163,11 @@ function styles() {
     },
 
     ".student-statistics": {
-      "padding-bottom": "1rem"
+      "padding-bottom": "1rem",
+      "font-size": "1.3rem"
     },
 
-    ".student__statistics__header": {
+    ".student-statistics__title": {
       display: "flex",
       "justify-content": "center"
     },
