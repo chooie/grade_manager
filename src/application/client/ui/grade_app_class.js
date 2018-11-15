@@ -25,13 +25,15 @@ module.exports = class GradeApp extends React.Component {
       "div",
       null,
       e(StudentAdder.bind(this, { addStudent: this.addStudent.bind(this) })),
-      e(Students.bind(null, this.state, this.deleteStudent.bind(this)))
+      e(
+        Students.bind(null, this.state.students, this.deleteStudent.bind(this))
+      ),
+      e(StudentStatistics.bind(null, this.state.students))
     );
   }
 };
 
-function Students(state, deleteStudent) {
-  const students = state.students;
+function Students(students, deleteStudent) {
   const title = e("h1", { className: "header" }, "Students");
   let content = getStudentInfo(students, deleteStudent);
   return e("div", null, title, content);
@@ -74,6 +76,39 @@ function getStudentInfo(students, deleteStudent) {
         )
       );
     })
+  );
+}
+
+function StudentStatistics(students) {
+  const numStudents = students.length;
+
+  let content;
+  if (numStudents === 0) {
+    e("p", "No Stats yet.");
+  } else {
+    const studentGrades = students.reduce(function(grades, student) {
+      grades.push(parseFloat(student.grade));
+      return grades;
+    }, []);
+    const studentGradeTotal = studentGrades.reduce(function(total, grade) {
+      return total + grade;
+    }, 0);
+    const minGrade = Math.min(...studentGrades);
+    const maxGrade = Math.max(...studentGrades);
+    const meanGrade = studentGradeTotal / numStudents;
+    const meanGradeString = +parseFloat(meanGrade.toFixed(2));
+    content = e(
+      "p",
+      { className: "text" },
+      minGrade + " - " + meanGradeString + " - " + maxGrade
+    );
+  }
+
+  return e(
+    "div",
+    { className: "student__statistics" },
+    e("h1", { className: "text" }, "Statistics"),
+    content
   );
 }
 
