@@ -1,6 +1,13 @@
 # Grade Manager
 Manage a list of students and their grades.
 
+Uses React with a Node.js backend. Data is persisted on the client using the
+LocalStorage API.
+
+Currently, JSX and TypeScript are not being used as this would extra build steps
+that could not be integrated into the current build process in a timely-enough
+manner to get this finished.
+
 - Quickstart: `./tasks.sh run` and go to "http://localhost:5000"
 
 This repo was originally cloned from the application template at
