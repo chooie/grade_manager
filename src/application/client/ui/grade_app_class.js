@@ -14,8 +14,24 @@ module.exports = class GradeApp extends React.Component {
     this.toggleStudentForm = this.toggleStudentForm.bind(this);
   }
 
+  componentWillMount() {
+    const savedStudents = JSON.parse(localStorage.getItem("students"));
+    if (savedStudents) {
+      this.setState({ students: savedStudents });
+    }
+  }
+
+  persistState() {
+    const students = this.state.students;
+    localStorage.setItem("students", JSON.stringify(students));
+  }
+
   addStudent(student) {
-    this.setState({ students: [...this.state.students, student] });
+    this.setState(function(state) {
+      const newState = { students: [...state.students, student] };
+      this.persistState();
+      return newState;
+    });
   }
 
   updateStudent(indexToUpdate, values) {
@@ -29,7 +45,11 @@ module.exports = class GradeApp extends React.Component {
     }
     const newStudents = this.state.students.slice();
     newStudents[indexToUpdate] = { name, grade };
-    this.setState(Object.assign({}, this.state, { students: newStudents }));
+    this.setState(function(state) {
+      const newState = Object.assign({}, this.state, { students: newStudents });
+      this.persistState();
+      return newState;
+    });
   }
 
   deleteStudent(indexToDelete) {
