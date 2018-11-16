@@ -125,6 +125,7 @@ function styles() {
     },
 
     ".student__header": {
+      padding: "0.5rem",
       "padding-bottom": "1rem"
     },
 
@@ -132,11 +133,14 @@ function styles() {
       display: "inline-flex",
       "align-items": "center",
       width: "70%",
-      hyphens: "auto"
+      hyphens: "auto",
+      "margin-right": "0.2rem"
     },
 
     ".student__name.input": {
-      color: "black"
+      color: "black",
+      "border-radius": "0.2rem",
+      "font-size": "1rem"
     },
 
     ".student__grade": {
@@ -147,7 +151,9 @@ function styles() {
     },
 
     ".student__grade.input": {
-      color: "black"
+      color: "black",
+      "text-align": "right",
+      "border-radius": "0.2rem"
     },
 
     ".student__delete": {
