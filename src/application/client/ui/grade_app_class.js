@@ -58,6 +58,7 @@ module.exports = class GradeApp extends React.Component {
       ),
       this.state.showStudentForm &&
         e(StudentAdder.bind(this, { addStudent: this.addStudent.bind(this) })),
+      e(StudentStatistics.bind(null, this.state.students)),
       e(
         Students.bind(
           null,
@@ -65,8 +66,7 @@ module.exports = class GradeApp extends React.Component {
           this.updateStudent.bind(this),
           this.deleteStudent.bind(this)
         )
-      ),
-      e(StudentStatistics.bind(null, this.state.students))
+      )
     );
   }
 };
@@ -74,7 +74,7 @@ module.exports = class GradeApp extends React.Component {
 function Students(students, updateStudent, deleteStudent) {
   const title = e("h1", { className: "header" }, "Students");
   let content = studentInfo(students, updateStudent, deleteStudent);
-  return e("div", null, title, content);
+  return e("div", { className: "student-info" }, title, content);
 }
 
 class StudentTabularForm extends React.Component {
@@ -156,12 +156,14 @@ class StudentTabularForm extends React.Component {
       e(
         "div",
         {
-          className: "student__delete",
-          onClick: this.deleteStudent.bind(this, this.props.index)
+          className: "student__delete"
         },
         dangerousElement(
           "div",
-          { className: "student__delete__icon" },
+          {
+            className: "student__delete__icon",
+            onClick: this.deleteStudent.bind(this, this.props.index)
+          },
           "&#x2715;"
         )
       ),

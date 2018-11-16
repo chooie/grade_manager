@@ -44,7 +44,7 @@ function styles() {
     },
 
     ".main-content-container": {
-      "max-width": "1000px",
+      "max-width": "500px",
       margin: "auto",
       "padding-bottom": "60px"
     },
@@ -87,7 +87,10 @@ function styles() {
 
     ".student-form": {
       "text-align": "center",
-      "max-width": "500px",
+      margin: "auto"
+    },
+
+    ".student-info": {
       margin: "auto"
     },
 
@@ -140,7 +143,8 @@ function styles() {
     ".student__name.input": {
       color: "black",
       "border-radius": "0.2rem",
-      "font-size": "1rem"
+      "font-size": "1rem",
+      padding: "0.3rem"
     },
 
     ".student__grade": {
@@ -153,7 +157,8 @@ function styles() {
     ".student__grade.input": {
       color: "black",
       "text-align": "right",
-      "border-radius": "0.2rem"
+      "border-radius": "0.2rem",
+      padding: "0.3rem"
     },
 
     ".student__delete": {
@@ -168,7 +173,7 @@ function styles() {
       display: "inline-flex",
       "align-items": "center",
       "justify-content": "center",
-      background: "red",
+      color: "red",
       "font-size": "0.8rem",
       width: "1rem",
       height: "1rem",
